@@ -6,12 +6,13 @@ $password = md5($password);
 
 $connect = new mysqli('localhost', 'root', '', 'news-php');
 
-$result = $connect->query("SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
+$sql = "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'";
+$result = $connect->query($sql);
 
 $authuser = $result->fetch_assoc();
 
 if (count($authuser) == 0) {
-    echo "Користувача з логіном $login не знайдено";
+    echo "<h2>User with login $login not found!</h2>";
     exit();
 }
 

@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap');
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgb(220, 220, 220);
+}
+
+ /* header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.header::after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: rgba(161, 167, 185, 0.33);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.logo{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log-item{
+display: flex;
+justify-content: center;
+align-items: center;
+width: 80px;
+height: 30px;
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+text-decoration: none;
+font-weight: 400;
+text-align: center;
+border-radius: 5px;
+}
+
+.log-item:hover {
+font-weight: 700;
+}
+
+.log p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.greet{
+    font-weight: 700;
+}
+
+.condition {
+    color: rgb(214, 59, 59);
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+
+/* Authorization form */
+
+.auth-block{
+width: 400px;
+margin-left: auto;
+margin-right: auto;
+margin-top: 20px;
+background-color: rgb(240, 240, 240);
+}
+
+.auth-block h2 {
+font-size: 20px;
+font-weight: 500;
+text-align: center;
+margin-top: 0px;
+padding-top: 20px;
+
+}
+
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-item {
+    margin-bottom: 15px;
+}
+
+.auth-btn{
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.auth-btn:hover{
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    background-color: rgb(187, 187, 187);
+}
+
+/* setArticle */
+.setArticle-form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.setArticle-text{
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.setArticle-btn{
+    cursor: pointer;
+}
+
+.setArticle-btn:hover {
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    background-color: rgb(187, 187, 187);
+}
+
+/* article-section */
+.article-section{
+   background-color: rgb(255, 255, 255); 
+}
+
+.article-btn{
+    display: inline-block;
+    cursor: pointer;
+}
+
+.article-btn:hover {
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    background-color: rgb(187, 187, 187);
+}
+
+/* edit */
+.edit-btn{
+    display: flex;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    background-color: rgb(190, 190, 190);
+text-decoration: none;
+text-align: center;
+}

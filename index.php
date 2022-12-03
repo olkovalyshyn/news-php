@@ -1,6 +1,6 @@
 <?php
-include './connect/connect.php';
-include './src/addEditArticleFunc.php';
+include './src/articleFunc.php';
+include './src/commentFunc.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,39 +11,40 @@ include './src/addEditArticleFunc.php';
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News</title>
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
-<body>
-  <header>
-    <a>News site</a>
-
-    <?php if ($_COOKIE["user"] == "") : ?>
-      <a href="./authorization-form.html">Log in </a>
-      <p>or</p>
-      <a href="./registration-form.html">Sign up</a>
-    <?php else : ?>
-      <p>Hello, <?= $_COOKIE["user"] ?>!</p>
-      <a href="./logout.php">Log out</a>
-    <?php endif; ?>
+<body class="container">
+  <header class="header">
+    <a class="logo">News site</a>
+    <div class="log">
+      <?php if ($_COOKIE["user"] == "") : ?>
+        <a class="log-item" href="./authorization-form.html">Log in </a>
+        <p>or</p>
+        <a class="log-item" href="./registration-form.html">Sign up</a>
+      <?php else : ?>
+        <p class="greet">Hello, <?= $_COOKIE["user"] ?>!</p>
+        <a class="log-item" href="./logout.php">Log out</a>
+      <?php endif; ?>
   </header>
-
+  </div>
   <main>
 
     <article>
       <?php
-      if ($_COOKIE['user'] !== "") {
-        echo "<form action='" . setArticle($connect) . "' method='post'>
+      if ($_COOKIE) {
+        echo "<form class='setArticle-form' action='" . setArticle() . "' method='post'>
       <input type='hidden' name='id' >
       <input type='hidden' name='login' value='" . $_COOKIE['user'] . "'>
-      <textarea name='article'></textarea>
-      <button type='submit' name='submitAddArticle'>Add article</button>
+      <textarea class='setArticle-text' name='article'></textarea>
+      <button class='setArticle-btn' type='submit' name='submitAddArticle'>Add article</button>
       </form>";
       } else {
-        echo "Only registered users can add and comment news!";
+        echo "<p class='condition'>Only registered users can add and comment news!!!</p>";
       }
 
-      getArticle($connect);
+      getArticle();
+
       ?>
     </article>
   </main>
