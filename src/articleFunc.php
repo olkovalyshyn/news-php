@@ -1,17 +1,18 @@
 <?php
-function setArticle()
+include './connect/connect.php';
+
+function setArticle($connectDB)
 {
     if (isset($_POST["submitAddArticle"]) && isset($_COOKIE['user'])) {
         $login = $_POST['login'];
         $article = $_POST['article'];
 
-        $connect = new mysqli('localhost', 'root', '', 'news-php');
+        // $connect = new mysqli('localhost', 'root', '', 'news-php');
         $sql = "INSERT INTO `news` (`login`, `article`) VALUE ('$login', '$article')";
-        $result = $connect->query($sql);
+        $result = $connectDB->query($sql);
 
-        $connect->close();
+        $connectDB->close();
     }
-    return $result;
 }
 
 function getArticle()
@@ -22,7 +23,13 @@ function getArticle()
 
     while ($row = $result->fetch_assoc()) {
         echo "<div class='article-section'>";
+        echo "<div class='flex-container'>";
+        echo "<div class='article-text'>";
+        echo "<p class='owner'> Author: " . $row['login'] . "</p>";
         echo "<p>" . $row['article'] . "</p>";
+        echo "</div>";
+
+        echo "<div class='btn-block'>";
         echo "
         <form action='/src/editArticle.php' method='POST'>
             <input type='hidden' name='id', value='" . $row['id'] . "'>
@@ -39,16 +46,24 @@ function getArticle()
             <button class='article-btn'>Delete</button>
         </form>
         ";
+        echo "</div>";
+        echo "</div>";
+
+        echo "<div class='comment-section'>";
         echo "<form class='setComment-form' action='" . setComment() . "' method='post'>
-      <input type='hidden' name='id' >
+      <input type='hidden' name='article_id' value=" . $row['id']  . ">
       <input type='hidden' name='login' value='" . $_COOKIE['user'] . "'>
       <input type='hidden' name='article' value='" . $row['article'] . "'>
-      <textarea class='setComment-text' name='comment'></textarea>
-      <button class='setComment-btn' type='submit' name='submitAddComment'>Add comment</button>
+      <textarea class='setComment-text' name='comment' placeholder='...here input your comment...'></textarea>
+      <button class='setComment-btn' type='submit' name='submitSetComment'>Add comment</button>
       </form>";
-        echo getComment();
+        $contolId = $row['id'];
+        echo getComment($contolId);
+
+        echo "</div>";
         echo "</div>";
     }
+
     $connect->close();
 }
 

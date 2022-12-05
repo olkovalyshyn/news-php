@@ -80,7 +80,8 @@ font-weight: 700;
 
 /* Authorization form */
 
-.auth-block{
+.auth-block,
+.delUsers_form{
 width: 400px;
 margin-left: auto;
 margin-right: auto;
@@ -88,7 +89,8 @@ margin-top: 20px;
 background-color: rgb(240, 240, 240);
 }
 
-.auth-block h2 {
+.auth-block h2,
+.delUsers_form h2 {
 font-size: 20px;
 font-weight: 500;
 text-align: center;
@@ -135,11 +137,13 @@ padding-top: 20px;
     margin-bottom: 10px;
 }
 
-.setArticle-btn{
+.setArticle-btn,
+.setComment-btn{
     cursor: pointer;
 }
 
-.setArticle-btn:hover {
+.setArticle-btn:hover,
+.setComment-btn:hover {
     font-weight: 700;
     color: rgb(255, 255, 255);
     background-color: rgb(187, 187, 187);
@@ -147,7 +151,39 @@ padding-top: 20px;
 
 /* article-section */
 .article-section{
-   background-color: rgb(255, 255, 255); 
+   background-color: rgba(173, 114, 114, 0.411); 
+   margin-bottom: 20px;
+   margin-left: 50px;
+   margin-right: 50px;
+}
+
+.owner{
+    margin: 0px;
+}
+
+.flex-container,
+.delUsers_item{
+    background-color: rgb(189, 189, 189);
+    margin-top: 20px;
+    margin-bottom: 0px;
+    padding-bottom: 1px;
+}
+
+.delUsers_item {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.delUsers_item p{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-block{
+margin-bottom: 20px;
 }
 
 .article-btn{
@@ -159,6 +195,23 @@ padding-top: 20px;
     font-weight: 700;
     color: rgb(255, 255, 255);
     background-color: rgb(187, 187, 187);
+}
+
+/* comment-section */
+.comment-section{
+    background-color: rgb(143, 155, 155);
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.setComment-form{
+    display: flex;
+    flex-direction: column;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
 }
 
 /* edit */

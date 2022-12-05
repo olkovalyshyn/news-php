@@ -1,6 +1,7 @@
 <?php
 include './src/articleFunc.php';
 include './src/commentFunc.php';
+include './connect/connect.php'
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@ include './src/commentFunc.php';
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News</title>
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="./css/style.css" type="text/css" />
 </head>
 
 <body class="container">
@@ -30,20 +31,31 @@ include './src/commentFunc.php';
   </div>
   <main>
 
+    <?php
+    if ($_COOKIE['user'] === 'admin') {
+      echo "<form action='./src/deleteUsers.php' method='POST'>
+            <input type='hidden' name='id' value='" . $row[' id'] . "'>
+            <input type='hidden' name='login' >
+            <button>Delete users</button>
+          </form>";
+    }
+    ?>
+
+
     <article>
       <?php
       if ($_COOKIE) {
-        echo "<form class='setArticle-form' action='" . setArticle() . "' method='post'>
-      <input type='hidden' name='id' >
-      <input type='hidden' name='login' value='" . $_COOKIE['user'] . "'>
-      <textarea class='setArticle-text' name='article'></textarea>
-      <button class='setArticle-btn' type='submit' name='submitAddArticle'>Add article</button>
-      </form>";
+        echo "<form class='setArticle-form' action='" . setArticle($connectDB) . "' method='post'>
+                <input type='hidden' name='id' >
+                <input type='hidden' name='login' value='" . $_COOKIE['user'] . "'>
+                <textarea class='setArticle-text' name='article' placeholder='...here input your article...'></textarea>
+                <button class='setArticle-btn' type='submit' name='submitAddArticle'>Add article</button>
+              </form>";
       } else {
         echo "<p class='condition'>Only registered users can add and comment news!!!</p>";
       }
 
-      getArticle();
+      getArticle($connectDB);
 
       ?>
     </article>
