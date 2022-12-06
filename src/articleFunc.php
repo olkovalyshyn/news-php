@@ -1,17 +1,16 @@
 <?php
-include './connect/connect.php';
 
-function setArticle($connectDB)
+function setArticle()
 {
     if (isset($_POST["submitAddArticle"]) && isset($_COOKIE['user'])) {
         $login = $_POST['login'];
         $article = $_POST['article'];
 
-        // $connect = new mysqli('localhost', 'root', '', 'news-php');
+        $connect = new mysqli('localhost', 'root', '', 'news-php');
         $sql = "INSERT INTO `news` (`login`, `article`) VALUE ('$login', '$article')";
-        $result = $connectDB->query($sql);
+        $result = $connect->query($sql);
 
-        $connectDB->close();
+        $connect->close();
     }
 }
 
@@ -57,8 +56,8 @@ function getArticle()
       <textarea class='setComment-text' name='comment' placeholder='...here input your comment...'></textarea>
       <button class='setComment-btn' type='submit' name='submitSetComment'>Add comment</button>
       </form>";
-        $contolId = $row['id'];
-        echo getComment($contolId);
+        $controlId = $row['id'];
+        echo getComment($controlId);
 
         echo "</div>";
         echo "</div>";
@@ -81,6 +80,7 @@ function editArticle()
         $connect->close();
 
         header("Location: /");
+        // exit();
     }
 }
 
@@ -91,6 +91,7 @@ function deleteArticle()
     $loginWhichRegisteredOnSite = $_COOKIE['user'];
     $article = $_POST['article'];
 
+
     if ($loginWhichAddAtricle === $loginWhichRegisteredOnSite || $loginWhichRegisteredOnSite === "admin") {
 
         $connect = new mysqli('localhost', 'root', '', 'news-php');
@@ -100,5 +101,7 @@ function deleteArticle()
         $connect->close();
 
         header("Location: /");
+        // exit();
     }
+    // else echo "<p class='condition'>Оnly the article owner or admin can edit!</p>" . "<a class='edit-btn' href='/'>OK</a>";
 }

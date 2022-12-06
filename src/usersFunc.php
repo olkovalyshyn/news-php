@@ -1,6 +1,6 @@
     <?php
     echo $id;
-    function deleteUsers()
+    function delUser()
     {
         $id = $_POST['id'];
         echo $id;
@@ -10,4 +10,5 @@
 
         $connect->close();
     }
-    header("Location: /");
+    // header("Location: /");
+    // exit;

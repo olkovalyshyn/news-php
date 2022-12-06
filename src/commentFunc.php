@@ -12,11 +12,10 @@ function setComment()
         $result = $connect->query($sql);
 
         $connect->close();
-        exit();
     }
 }
 
-function getComment($contolId)
+function getComment($controlId)
 {
     $connect = new mysqli('localhost', 'root', '', 'news-php');
     $sql = "SELECT * FROM `comments`";
@@ -25,7 +24,7 @@ function getComment($contolId)
     while ($row = $result->fetch_assoc()) {
         echo "<div class='article-section'>";
 
-        if ($contolId === $row['article_id']) {
+        if ($controlId === $row['article_id']) {
             echo "<p class='owner'> Author: " . $row['login'] . "</p>";
             echo "<p>" . $row['comment'] . "</p>";
 
@@ -65,6 +64,7 @@ function editComment()
         $connect->close();
 
         header("Location: /");
+        exit;
     }
 }
 
@@ -84,5 +84,6 @@ function deleteComment()
         $connect->close();
 
         header("Location: /");
+        exit;
     }
 }

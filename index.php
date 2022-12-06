@@ -1,7 +1,8 @@
 <?php
 include './src/articleFunc.php';
 include './src/commentFunc.php';
-include './connect/connect.php'
+// include './src/deleteUsers.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -20,12 +21,12 @@ include './connect/connect.php'
     <a class="logo">News site</a>
     <div class="log">
       <?php if ($_COOKIE["user"] == "") : ?>
-        <a class="log-item" href="./authorization-form.html">Log in </a>
+        <a class="log-item" href="./src/reg/authorization-form.html">Log in </a>
         <p>or</p>
-        <a class="log-item" href="./registration-form.html">Sign up</a>
+        <a class="log-item" href="./src/reg/registration-form.html">Sign up</a>
       <?php else : ?>
         <p class="greet">Hello, <?= $_COOKIE["user"] ?>!</p>
-        <a class="log-item" href="./logout.php">Log out</a>
+        <a class="log-item" href="./src/reg/logout.php">Log out</a>
       <?php endif; ?>
   </header>
   </div>
@@ -36,16 +37,15 @@ include './connect/connect.php'
       echo "<form action='./src/deleteUsers.php' method='POST'>
             <input type='hidden' name='id' value='" . $row[' id'] . "'>
             <input type='hidden' name='login' >
-            <button>Delete users</button>
+            <button type='submit' name='submitDelUsers'>Delete users</button>
           </form>";
     }
     ?>
 
-
     <article>
       <?php
       if ($_COOKIE) {
-        echo "<form class='setArticle-form' action='" . setArticle($connectDB) . "' method='post'>
+        echo "<form class='setArticle-form' action='" . setArticle() . "' method='post'>
                 <input type='hidden' name='id' >
                 <input type='hidden' name='login' value='" . $_COOKIE['user'] . "'>
                 <textarea class='setArticle-text' name='article' placeholder='...here input your article...'></textarea>
@@ -55,7 +55,7 @@ include './connect/connect.php'
         echo "<p class='condition'>Only registered users can add and comment news!!!</p>";
       }
 
-      getArticle($connectDB);
+      getArticle();
 
       ?>
     </article>
